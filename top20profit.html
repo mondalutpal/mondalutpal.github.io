@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Narrative Visualization</title>
+	<link rel="stylesheet" href="style.css" charset="utf-8">
+</head>
+ <h2 align="left">Fortune 500 Companies - 2019 Global List</h2>
+<!-- 
+ <h3>
+<div align="left"><a href="index.html">Interactive view</a> - <a href="country_wise.html">Country wise distribution</a> - <a href="top20revenue.html">Top 20 companies by revenue</a> - Top 20 companies by profit - <a href="reference.html">Reference</a></div>
+</h3>
+-->
+
+<!-- Below table hosts the slideshow buttons -->
+<table>
+<tr>
+<td width = 400 align="left" style="padding:5px"> <b> 4. Top 20 Companies by Profit :: </b></td>
+<td class="buttons"><input type=button onClick="location.href='index.html'" value='1'> </td>
+<td class="buttons"><input type=button onClick="location.href='country_wise.html'" value='2'> </td>
+<td class="buttons"><input type=button onClick="location.href='top20revenue.html'" value='3'> </td>
+<td class="buttons"><input type=button onClick="location.href='top20profit.html'" value='4'> </td>
+<td class="buttons"><input type=button onClick="location.href='reference.html'" value='5'> </td>
+
+<td width = 300 height= 25 align="right" > <label class="checkboxStyle"><input type="checkbox" id="sortChoice"> Uncheck to Sort Alphabetically</label> </td>
+
+</tr>
+</table>
+
+
+
+<!-- <label><input type="checkbox"> Sort values</label> -->
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script>
+
+var margin = {top: 30, right: 110, bottom: 70, left: 50},
+    width = 1050 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+//var formatPercent = d3.format(".0%");
+
+
+var name = "Name"
+	xCat = "Revenue",
+    yCat = "Profit",
+    rCat = "Employee",
+    colorCat = "Country";
+	
+var color = d3.scale.category20();
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], 0.1, 0.2);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var formatValue = d3.format(".2s");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+	.tickFormat(function(d) { return formatValue(d)});
+	
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    //return "<strong>Revenue: $</strong><span style='color:white'>" + d.Revenue + "</span>";
+	return name + ": " + d.Name + "</br>" + xCat + ": $" + d[xCat] + " M" + "<br>" + yCat + ": $" + d[yCat] + " M";
+  });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.call(tip);
+
+d3.csv("https://mondalutpal.github.io/top20_ByProfit.csv", function(error, data) {
+  data.forEach(function(d) {
+    d.Revenue = +d.Revenue;
+	d.Profit = +d.Profit;
+	d.Asset = +d.Asset;
+	d.Employee = +d.Employee;
+	d.Name = d.Name;
+	d.Shortname = d.Shortname;
+  });
+
+  x.domain(data.map(function(d) { return d.Shortname; }));
+  y.domain([0, d3.max(data, function(d) { return d.Profit; })]);
+  
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+	  .selectAll(".tick text")
+		.call(wrap, x.rangeBand());
+	  
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+	  //.tickformat(d3.format("~s"))
+	  //.format("~s")
+	  .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 5)
+      .attr("dy", ".71em")
+	  .style("text-anchor", "end")
+      .text("Profit in $ Million")
+	  .style("font-weight", "bold")
+	  .style("fill", "blue");
+
+  svg.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.Shortname); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.Profit); })
+      .attr("height", function(d) { return height - y(d.Profit); })
+	  .on('mouseover', tip.show)
+	  .on('mouseout', tip.hide)
+	  .style("fill", function(d) { return color(d[colorCat]); });
+	  
+	  
+//Set the Legend
+  var legend = svg.selectAll(".legend")
+      .data(color.domain())
+    .enter().append("g")
+      .classed("legend", true)
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  legend.append("circle")
+      .attr("r", 3.5)
+      .attr("cx", width + 20)
+      .attr("fill", color);
+
+  legend.append("text")
+      .attr("x", width + 26)
+      .attr("dy", ".35em")
+	  .style("font-size", "12px")
+	  .style("font", "sans-serif")
+      .text(function(d) { return d; });	  
+// legend details end	  
+	  
+	  
+
+function wrap (text, width) {
+
+  text.each(function() {
+
+    var breakChars = ['/', '&', '-'],
+      text = d3.select(this),
+      textContent = text.text(),
+      spanContent;
+
+    breakChars.forEach(char => {
+      // Add a space after each break char for the function to use to determine line breaks
+      textContent = textContent.replace(char, char + ' ');
+    });
+
+    var words = textContent.split(/\s+/).reverse(),
+      word,
+      line = [],
+      lineNumber = 0,
+      lineHeight = 1.1, // ems
+      x = text.attr('x'),
+      y = text.attr('y'),
+      dy = parseFloat(text.attr('dy') || 0),
+      tspan = text.text(null).append('tspan').attr('x', x).attr('y', y).attr('dy', dy + 'em');
+
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(' '));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        spanContent = line.join(' ');
+        breakChars.forEach(char => {
+          // Remove spaces trailing breakChars that were added above
+          spanContent = spanContent.replace(char + ' ', char);
+        });
+        tspan.text(spanContent);
+        line = [word];
+        tspan = text.append('tspan').attr('x', x).attr('y', y).attr('dy', ++lineNumber * lineHeight + dy + 'em').text(word);
+      }
+    }
+  });
+
+}	  
+	  
+  d3.select("#sortChoice").on("change", change);
+  
+  var sortTimeout = setTimeout(function() {
+    d3.select("#sortChoice").property("checked", true).each(change);
+  }, 2000);
+
+  function change() {
+    clearTimeout(sortTimeout);
+
+    // Copy-on-write since tweens are evaluated after a delay.
+    var x0 = x.domain(data.sort(this.checked
+        ? function(a, b) { return b.Profit - a.Profit; }
+        : function(a, b) { return d3.ascending(a.Shortname, b.Shortname); })
+        .map(function(d) { return d.Shortname; }))
+        .copy();
+
+    svg.selectAll(".bar")
+        .sort(function(a, b) { return x0(a.Shortname) - x0(b.Shortname); });
+
+    var transition = svg.transition().duration(750),
+        delay = function(d, i) { return i * 50; };
+
+    transition.selectAll(".bar")
+        .delay(delay)
+        .attr("x", function(d) { return x0(d.Shortname); });
+
+    transition.select(".x.axis")
+        .call(xAxis)
+		.selectAll(".tick text")
+		.call(wrap, x.rangeBand())
+      .selectAll("g")
+        .delay(delay);
+  }
+});
+</script>

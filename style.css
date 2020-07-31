@@ -1,0 +1,142 @@
+rect {
+  fill: transparent;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.1);
+  shape-rendering: crispEdges;
+}
+
+.axisLine {
+  fill: none;
+  shape-rendering: crispEdges;
+  stroke: rgba(0, 0, 0, 0.5);
+  stroke-width: 2px;
+}
+
+button {
+	margin: auto;
+	display: block;
+}
+
+.dot {
+  fill-opacity: .5;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+label {
+  position: relative;
+  top: 10px;
+  right: 10px;
+}
+
+
+/* Style for Pie Chart. */
+.arc text{
+    font: 9px sans-serif;
+    text-anchor: middle;
+	font-weight:bold;
+}
+
+.arc path{
+    stroke: none;
+}
+
+.arc2 text{
+    font: 10px sans-serif;
+    text-anchor: middle;
+}
+
+.arc2 path{
+    stroke: #fff;
+}
+
+/*style for standard div text*/
+
+.myNotes {
+  text-align: left;
+  font: 12px sans-serif;
+}
+
+.myDiv {
+  border: 5px outset red;
+  background-color: lightblue; 
+  text-align: center;
+  font: 10px sans-serif;
+}
+
+/* Style for slideshow button*/
+.buttons{ 
+ font-size: 15px;
+ font-family:courier;
+ background:#0b80e0;
+ color:#ffffff; 
+ padding: 5px 5px;
+ border: 2px solid #00f000;
+ border-radius: 8px;
+ box-shadow: 0 8px 15px 0 rgba(0,0,0,0.3), 0 5px 21px 0 rgba(0,0,0,0.18);
+ }
+ 
+ 
+/* Style for slideshow button*/
+.buttonLarge{ 
+ font-size: 25px;
+ font-family:courier;
+ background:#f00000;
+ color:#ffffff; 
+ padding: 15px 20px;
+ border: 2px solid #00f000;
+ border-radius: 8px;
+ box-shadow: 0 8px 15px 0 rgba(0,0,0,0.3), 0 5px 21px 0 rgba(0,0,0,0.18);
+ }
+ 
+ 
+  /* Style for slideshow button*/
+.checkboxStyle{ 
+ font-size: 15px;
+ font-family:times new roman;
+ text-align:center;
+ vertical-align:upper;
+ background:#0b80e0;
+ color:#ffffff; 
+ padding: 6px 7px;
+ border: 2px solid #00f000;
+ border-radius: 8px;
+ box-shadow: 0 8px 10px 0 rgba(0,0,0,0.3), 0 5px 12px 0 rgba(0,0,0,0.18);
+ }

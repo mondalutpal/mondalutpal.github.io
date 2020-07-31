@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Narrative Visualization - Index</title>
+    <link rel="stylesheet" href="style.css" charset="utf-8">
+  </head>
+ <h2 align="left">Fortune 500 Companies - 2019 Global List</h2>
+ 
+<!-- 
+ <h3>
+<div align="left">Interactive view - <a href="country_wise.html">Country wise distribution</a> - <a href="top20revenue.html">Top 20 companies by revenue</a> - <a href="top20profit.html">Top 20 companies by profit</a> - <a href="reference.html">Reference</a></div>
+</h3>
+-->
+
+<!-- Below table hosts the slideshow buttons -->
+<table>
+<tr>
+<td width = 400 align="left" style="padding:5px"> <b> 1. Introduction - Zoom, Drag & Explore :: </b></td>
+<td class="buttons"><input type=button onClick="location.href='index.html'" value='1'> </td>
+<td class="buttons"><input type=button onClick="location.href='country_wise.html'" value='2'> </td>
+<td class="buttons"><input type=button onClick="location.href='top20revenue.html'" value='3'> </td>
+<td class="buttons"><input type=button onClick="location.href='top20profit.html'" value='4'> </td>
+<td class="buttons"><input type=button onClick="location.href='reference.html'" value='5'> </td>
+</tr>
+</table>
+
+
+
+  <body>
+    <div id="scatter" align="center"></div>
+
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="scatter.js"></script>
+
+  </body>
+</html>
