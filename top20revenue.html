@@ -4,7 +4,7 @@
     <title>Fortune 500 - Top 20 by revenue</title>
 	<link rel="stylesheet" href="style.css" charset="utf-8">
 </head>
- <h2 align="left">Fortune 500 Companies - 2019 Global List</h2>
+ <h2 align="left">Fortune 500 List - A Proof of Global Economic Disparity</h2>
  
 <!-- 
  <h3>
@@ -15,14 +15,17 @@
 <!-- Below table hosts the slideshow buttons -->
 <table>
 <tr>
-<td width = 400 align="left" style="padding:5px"> <b> 3. Top 20 Companies by Revenue :: </b></td>
+<td><img src="dollar.gif" width="30" height="30" alt="Click on the Slides"></td>
+<td width = 300 align="left" style="padding:5px"> <b> 3. Top 20 Companies by Revenue :: </b></td>
+<td><img src="right-arrow.gif" width="30" height="30" alt="Click on the Slides"></td>
+<td><img src="right-arrow.gif" width="30" height="30" alt="Click on the Slides"></td>
 <td class="buttons"><input type=button onClick="location.href='index.html'" value='1'> </td>
 <td class="buttons"><input type=button onClick="location.href='country_wise.html'" value='2'> </td>
 <td class="buttons"><input type=button onClick="location.href='top20revenue.html'" value='3'> </td>
 <td class="buttons"><input type=button onClick="location.href='top20profit.html'" value='4'> </td>
 <td class="buttons"><input type=button onClick="location.href='reference.html'" value='5'> </td>
 
-<td width = 300 height= 25 align="right" > <label class="checkboxStyle"><input type="checkbox" id="sortChoice"> Uncheck to Sort Alphabetically</label> </td>
+<td width = 320 height= 25 align="right" > <label class="checkbox"><input type="checkbox" id="sortChoice"> Uncheck to sort alphabetically else sorted descending</label> </td>
 
 </tr>
 </table>
@@ -33,7 +36,7 @@
 <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script>
 
-var margin = {top: 30, right: 110, bottom: 70, left: 50},
+var margin = {top: 30, right: 110, bottom: 120, left: 50},
     width = 1050 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -70,12 +73,12 @@ var tip = d3.tip()
   .offset([-10, 0])
   .html(function(d) {
     //return "<strong>Revenue: $</strong><span style='color:white'>" + d.Revenue + "</span>";
-	return name + ": " + d.Name + "</br>" + xCat + ": $" + d[xCat] + " M" + "<br>" + yCat + ": $" + d[yCat] + " M";
+	return name + ": " + d.Name + "</br>" + xCat + ": $" + d[xCat] + " M" + "<br>" + yCat + ": $" + d[yCat] + " M" + "</br>" + rCat + ":  " + d[rCat];
   });
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("height", height + margin.top + margin.bottom - 70)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -141,8 +144,8 @@ d3.csv("https://mondalutpal.github.io/top20_ByRevenue.csv", function(error, data
   legend.append("text")
       .attr("x", width + 26)
       .attr("dy", ".35em")
-	  .style("font-size", "12px")
-	  .style("font", "sans-serif")
+	  .style("font-size", "11px")
+	  .style("font-family", "sans-serif")
       .text(function(d) { return d; });	  
 // legend details end	  
 	  
@@ -229,3 +232,5 @@ function wrap (text, width) {
 });
 
 </script>
+
+<table><tr><td width = "940"><p class = "myNotes"> <b> Read and Act: The "3 Biggies" (U.S., China & Japan) totals 11 out of Top 20 i.e. 55% dominance !! Do the mouseover on the bars to find more specific details.</b></p></td></tr></table>

@@ -1,6 +1,6 @@
 var margin = { top: 30, right: 270, bottom: 70, left: 50 },
     outerWidth = 1200,
-    outerHeight = 500,
+    outerHeight = 460,
     width = outerWidth - margin.left - margin.right,
     height = outerHeight - margin.top - margin.bottom;
 
@@ -79,7 +79,7 @@ You should be able to call d3.scale.ordinal().range(...) on your own color list.
       .attr("class", "d3-tip")
       .offset([-10, 0])
       .html(function(d) {
-        return name + ": " + d.Name + "</br>" + xCat + ": $" + d[xCat] + " M" + "<br>" + yCat + ": $" + d[yCat] + " M";
+        return name + ": " + d.Name + "</br>" + xCat + ": $" + d[xCat] + " M" + "<br>" + yCat + ": $" + d[yCat] + " M" + "</br>" + rCat + ":  " + d[rCat] ;
       });
 
   var zoomBeh = d3.behavior.zoom()
@@ -91,7 +91,7 @@ You should be able to call d3.scale.ordinal().range(...) on your own color list.
   var svg = d3.select("#scatter")
     .append("svg")
       .attr("width", outerWidth)
-      .attr("height", outerHeight)
+      .attr("height", outerHeight - 30)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
       .call(zoomBeh);
@@ -175,7 +175,7 @@ You should be able to call d3.scale.ordinal().range(...) on your own color list.
       .attr("x", width + 26)
       .attr("dy", ".35em")
 	  .style("font-size", "11px")
-	  .style("font", "sans-serif")
+	  .style("font-family", "sans-serif")
       .text(function(d) { return d; });
 
 

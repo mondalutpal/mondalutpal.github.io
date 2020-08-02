@@ -92,6 +92,18 @@ label {
 .myNotes {
   text-align: left;
   font: 12px sans-serif;
+  padding: 15px 20px;
+  box-shadow: 0 8px 15px 0 rgba(0,0,0,0.3), 0 5px 21px 0 rgba(0,0,0,0.18);
+}
+
+.myNotes2 {
+  text-align: left;
+  font: 12px sans-serif;
+}
+
+.myNotes3 {
+  text-align: left;
+  font: 13px sans-serif;
 }
 
 .myDiv {
@@ -127,16 +139,25 @@ label {
  }
  
  
-  /* Style for slideshow button*/
+  /* Style for slideshow checkbox*/
 .checkboxStyle{ 
- font-size: 15px;
+ font-size: 11px;
  font-family:times new roman;
  text-align:center;
- vertical-align:upper;
+ vertical-align:top;
  background:#0b80e0;
  color:#ffffff; 
- padding: 6px 7px;
+ padding: 8px 7px;
  border: 2px solid #00f000;
  border-radius: 8px;
  box-shadow: 0 8px 10px 0 rgba(0,0,0,0.3), 0 5px 12px 0 rgba(0,0,0,0.18);
+ }
+ 
+ .checkbox{ 
+ font-size: 12px;
+ font-family:sans-serif;
+ vertical-align:top;
+ color:#f00000; 
+
+
  }

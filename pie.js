@@ -2,8 +2,8 @@
 //var margin = {top: 20, right: 20, bottom: 20, left: 20},
 //var margin = {top: 30, right: 110, bottom: 10, left: 250},
 var margin = {top: 30, right: 20, bottom: 10, left: 40},
-    width = 750 - margin.right - margin.left, //width = 500
-    height = 500 - margin.top - margin.bottom
+    width = 600 - margin.right - margin.left, //width = 690
+    height = 450 - margin.top - margin.bottom //height = 460
     radius = height/2;
 
 
@@ -55,7 +55,8 @@ var color = d3.scaleOrdinal()
 
 
 // define svg
-var svg = d3.select("body").append("svg")
+//var svg = d3.select("body").append("svg")
+var svg = d3.select("#svgHolder").append("svg")
     .attr("width", width)
     .attr("height", height)
     .append("g")
@@ -98,9 +99,25 @@ g.append("text")
      .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")";})
      .attr("dy", ".35em")
      .text(function(d) {return d.data.country + " : " + d.data.count;} )
+
+
    
+/*
+//For Additional text
+var svg1 = d3.select("body")
+    .attr("width", "200")
+    .attr("height", "300")
+    .append("g")
+    .attr("transform", "translate("700","200")")
+	.text("This is additional text");
+*/
 
 	});
+
+
+
+
+
 
 
 /* Try to put the labels with the same angle as the midangle
