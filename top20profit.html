@@ -4,7 +4,7 @@
     <title>Narrative Visualization</title>
 	<link rel="stylesheet" href="style.css" charset="utf-8">
 </head>
- <h2 align="left">Fortune 500 List - A Proof of Global Economic Disparity</h2>
+ <h2 align="left">Fortune 500 List - A Proof of Global Economic Disparity?</h2>
 <!-- 
  <h3>
 <div align="left"><a href="index.html">Interactive view</a> - <a href="country_wise.html">Country wise distribution</a> - <a href="top20revenue.html">Top 20 companies by revenue</a> - Top 20 companies by profit - <a href="reference.html">Reference</a></div>
@@ -49,7 +49,22 @@ var name = "Name"
     rCat = "Employee",
     colorCat = "Country";
 	
-var color = d3.scale.category20();
+//var color = d3.scale.category20();
+var color_category = [0xffbb78, 0x1f77b4, 0xaec7e8, 0xff9896, 0xff7f0e, 0xe377c2 , 0xd62728].map(d3_rgbString);
+
+function d3_rgbString (value) {
+return d3.rgb(value >> 16, value >> 8 & 0xff, value & 0xff);
+}
+
+d3.scale.category7 = function() {
+return d3.scale.ordinal().range(color_category7);
+};
+
+
+var color = d3.scale.ordinal()
+	.range(color_category);
+ //   .range(["#ffbb78", "#1f77b4, "#aec7e8", "#ff9896", "#ff7f0e", "#e377c2" , "#d62728"]);
+
 
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], 0.1, 0.2);

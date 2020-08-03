@@ -10,12 +10,19 @@ var margin = {top: 30, right: 20, bottom: 10, left: 40},
   //var color = d3.scale.category20();
 //  var color = d3.schemeCategory20;
 
+/*
 var color = d3.scaleOrdinal()
     .range(d3.schemeCategory20)
-
+*/
 //Which is the same of:
 //var myScale = d3.scaleOrdinal(d3.schemeCategory20)
 
+
+var color = d3.scaleOrdinal()
+    .range(["#1f77b4", "#aec7e8", "#d62728", "#c5b0d5", "#98df8a", "#2ca02c", "#ff9896", "#9467bd", "#eb4034","#ff7f0e", "#34ebdc" ]);
+
+//canada= #eb4034
+//Other = #34ebdc
 
  /*   var color = d3.scaleOrdinal()
          .range(["#66b3ff", "#4da6ff", "#3399ff", 
