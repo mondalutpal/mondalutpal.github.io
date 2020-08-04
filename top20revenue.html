@@ -197,10 +197,13 @@ function wrap (text, width) {
   //d3.select("input").on("change", change);
   d3.select("#sortChoice").on("change", change);
   
+  //New add to enable transition while loading
+  d3.select("#sortChoice").property("checked", false).each(change);
+  
   var sortTimeout = setTimeout(function() {
     //d3.select("input").property("checked", true).each(change);
 	d3.select("#sortChoice").property("checked", true).each(change);
-  }, 2000);
+  }, 500);
 
   function change() {
     clearTimeout(sortTimeout);
